@@ -21,8 +21,8 @@ public class GridSystem : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         StartColor = rend.material.color;
-        MoveTowards = transform.position - new Vector3(0,0.3f,0);
     }
+
 
     // Update is called once per frame
     void Update()
@@ -32,7 +32,6 @@ public class GridSystem : MonoBehaviour
 
     void OnMouseExit()
     {
-        MoveTowards.y = 0;
         rend.material.color = StartColor;
     }
     void OnMouseDown()

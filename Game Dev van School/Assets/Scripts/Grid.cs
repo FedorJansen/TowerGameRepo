@@ -61,10 +61,6 @@ public class Grid : MonoBehaviour
 
     public void HighlightTile()
     {
-        if (currentTile == GridField[targetX,targetZ])
-        {
-            transform.position = Vector3.MoveTowards(transform.position, MoveTowards, HoverSpeed * Time.deltaTime);
-        }
         currentTile = GridField[targetX, targetZ];
     }
 
