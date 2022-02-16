@@ -7,6 +7,7 @@ public class GridSystem : MonoBehaviour
     public GameObject Tower1;
     public Vector3 GridPos;
     private Vector3 offset = new Vector3(0,0.7f,0);
+    public buildSystem sukkel;
 
     public float HoverSpeed = 0.2f;
     private Vector3 MoveTowards;
@@ -38,7 +39,7 @@ public class GridSystem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (GetComponent<buildSystem>().Mode && transform.childCount == 0)
+            if (GetComponent<buildSystem>().Mode && GetComponent<Grid>().GridField[Grid.targetX,Grid.targetZ].transform.childCount == 0)
             {
                 Instantiate(Tower1, GridPos + offset, Quaternion.identity, transform);
             }

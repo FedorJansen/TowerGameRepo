@@ -6,13 +6,15 @@ public class Grid : MonoBehaviour
 {
     public GameObject[,] GridField;
 
-    public int targetX;
-    public int targetZ;
+    public static int targetX;
+    public static int targetZ;
+    bool tempBool = false;
 
     private int maxX;
     private int maxZ;
 
     public GameObject currentTile;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,11 @@ public class Grid : MonoBehaviour
         MouseInformation();
         if (MissingTileCheck())
         {
-            HighlightTile();
+            if (true)
+            {
+                HighlightTile();
+            }
+            
         }
     }
 
@@ -61,7 +67,19 @@ public class Grid : MonoBehaviour
 
     public void HighlightTile()
     {
-        currentTile = GridField[targetX, targetZ];
+        if (!tempBool)
+        {
+            currentTile = GridField[targetX, targetZ];
+            animator.SetBool("MouseOver", true);
+            tempBool = true;
+            Debug.Log("aap true");
+        }
+        else
+        {
+            animator.SetBool("MouseOver", false);
+            tempBool = false;
+            Debug.Log("aap false");
+        }
     }
 
     void MouseInformation()
