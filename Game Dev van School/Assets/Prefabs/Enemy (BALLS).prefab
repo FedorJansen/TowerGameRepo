@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5243698023920853500}
   - component: {fileID: 6335264578062251316}
   - component: {fileID: -7025279368445479347}
+  - component: {fileID: 8118689925442577399}
   m_Layer: 0
   m_Name: Enemy (BALLS)
   m_TagString: Untagged
@@ -109,3 +110,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+--- !u!114 &8118689925442577399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8093417337160386488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739314b52235133489976c51c28af118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

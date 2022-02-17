@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,74 +10,75 @@ public class spawnManager : MonoBehaviour
     public GameObject spawn;
     public Vector3 Spawnpos;
 
-    private float minEnemy = 10;
-    private float maxEnemy = 20;
+    private float[] Summons = { 10, 20, 0, 0 } ;
     private float wave;
     private int ronde = 1;
-    private float summoned;
     public enum difficulty { easy, normal, hard, impossible };
-    public difficulty diff = difficulty.easy;
+    public static difficulty diff = difficulty.easy;
+    public float random = 0;
+    private float interval = 0;
+ 
 
     void Start()
     {
         Spawnpos = spawn.transform.position;
-        Wave();
+        enemyHandler.MyDeathHandler += Died;
+        InvokeRepeating("OnWave", 10f, 0.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+  
+
+
     }
 
-    void Diff(string diff)
+    void Died()
     {
-        if (Enum.TryParse(diff.ToLower(), out difficulty result))
+        Summons[3]++;
+
+    }
+
+    void Diff(difficulty pick)
+    {
+       
+    }
+
+    public void easybutton()
+    {
+        diff = difficulty.easy;
+    }
+
+
+
+
+    void OnWave()
+    {
+        if(Summons[1] > Summons[2])
         {
-            switch (diff)
+            if(Summons[0] > Summons[2])
             {
-                case "easy":
-                    //appel
-                    break;
-                case "normal":
-                    //loser
-                    break;
-                case "hard":
-                    //noob
-                    break;
-                case "impossible":
-                    //stop
-                    break;
+                enemiesActive.Add(Instantiate(enemyPrefabs[0], Spawnpos, transform.rotation, transform));
+                Summons[2]++;
             }
-        }
-        else
-            throw new InvalidOperationException(nameof(diff));
-    }
+            else
+            {
+                random = UnityEngine.Random.Range(1, 10);
+                if (random > 5)
+                {
+                    enemiesActive.Add(Instantiate(enemyPrefabs[0], Spawnpos, transform.rotation, transform));
+                   ;
+                }
+                Summons[2]++;
 
-    void Ronde() 
-    {
-        
-    }
-    void Wave()
-    {
-        if (summoned < maxEnemy)
-        {
-            InvokeRepeating("spawnEnemy",0,1);
-            summoned++;
+
+
+            }
 
         }
-        else if (summoned >= maxEnemy)
-        {
-            return;
-        }
-    }
 
-            //maxEnemy = maxEnemy* 1.5f;
-            //minEnemy = minEnemy* 1.5f;
-            //Debug.Log("maxEnemy: " + maxEnemy + " minEnemy: " + minEnemy);
 
-    void spawnEnemy()
-    {
-        enemiesActive.Add(Instantiate(enemyPrefabs[0], Spawnpos, transform.rotation, transform));
     }
 }

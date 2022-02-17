@@ -41,4 +41,9 @@ public class EnemyMovement : MonoBehaviour
         
         
     }
+    private void OnDestroy()
+    {
+       
+        
+    }
 }
