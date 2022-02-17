@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class lazerBeanScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Transform target;
+    public float range;
     void Start()
+    {
+        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+      //  GetComponent<spawnManager>().enemyPrefabs[];
+    }
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateTarget()
     {
+
         
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
